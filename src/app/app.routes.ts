@@ -4,5 +4,6 @@ import { AnswerPreviewComponent } from './answer-preview/answer-preview.componen
 
 export const routes: Routes = [
   { path: 'form/builder', component: FormBuilderComponent },
-  { path: 'form/answer', component: AnswerPreviewComponent }
+  { path: 'form/answer', component: AnswerPreviewComponent },
+  { path: '', redirectTo: 'form/builder', pathMatch: 'full' }
 ];
