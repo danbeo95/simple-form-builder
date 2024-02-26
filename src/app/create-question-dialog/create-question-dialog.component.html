@@ -1,0 +1,46 @@
+<h2 mat-dialog-title>Create question</h2>
+<mat-dialog-content [formGroup]="formGroup">
+  <div class="flex flex-col">
+    <mat-form-field>
+      <mat-label>Question type</mat-label>
+      <mat-select formControlName="type">
+        @for (type of questionTypes; track type) {
+          <mat-option [value]="type.id">{{ type.label }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+    <!--    <mat-form-field>-->
+    <!--      <mat-label>Question content</mat-label>-->
+    <!--      <textarea matInput rows="3"></textarea>-->
+    <!--    </mat-form-field>-->
+    <mat-form-field>
+      <mat-label>Question title</mat-label>
+      <textarea formControlName="title" matInput rows="3"></textarea>
+    </mat-form-field>
+
+    <!-- check list question   -->
+    @if (formGroup.contains('options')) {
+      <ng-container formArrayName="options">
+        @for (option of optionsFormArr?.controls; track option; let i = $index) {
+          <mat-form-field>
+            <input [formControlName]="i" matInput [placeholder]="'add option ' + i"/>
+          </mat-form-field>
+        }
+      </ng-container>
+    }
+  </div>
+  <div class="flex flex-col items-end justify-end p-3">
+    @if (formGroup.contains('options')) {
+      <button [disabled]="optionsFormArr?.value?.length >= 5" mat-button (click)="addNewOption()">Add new option
+      </button>
+    }
+    <mat-checkbox formControlName="required">
+      This field required
+    </mat-checkbox>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Close</button>
+  <button mat-raised-button cdkFocusInitial (click)="onClickDone()" [disabled]="formGroup.invalid">Create question
+  </button>
+</mat-dialog-actions>

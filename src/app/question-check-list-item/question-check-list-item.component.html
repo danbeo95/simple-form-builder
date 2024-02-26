@@ -1,0 +1,10 @@
+<div class="text-xl mb-3">{{ question().title }} @if (question().required) {
+  <span>*</span>
+}</div>
+<div class="flex flex-col" [formGroup]="formGroup">
+  <ng-container formArrayName="options">
+    @for (option of question().options; track option; let i = $index) {
+      <mat-checkbox [formControlName]="i">{{ option.content }}</mat-checkbox>
+    }
+  </ng-container>
+</div>

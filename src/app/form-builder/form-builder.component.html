@@ -1,0 +1,25 @@
+@if (questions().length === 0) {
+  <div class="flex items-center justify-center p-10">
+    <button (click)="openCreateModal()" mat-raised-button [color]="'primary'">Add new question</button>
+  </div>
+
+}
+<div class="flex flex-col px-32" [formGroup]="formGroup">
+  <ng-container formArrayName="answers">
+    @for (question of questions(); track question; let i = $index) {
+      @if (question.type === 'paragraph') {
+        <app-question-paragraph-item [formControlName]="i" [question]="$any(question)"/>
+      }
+      @if (question.type === 'check_list') {
+        <app-question-check-list-item [formControlName]="i" [question]="$any(question)"/>
+      }
+      <mat-divider/>
+    }
+  </ng-container>
+
+  @if (questions().length > 0) {
+    <button (click)="openCreateModal()" mat-raised-button [color]="'primary'">Add new question</button>
+    <button mat-button (click)="showAnswers()" [routerLink]="['/form/answer']">Review my answers</button>
+  }
+</div>
+

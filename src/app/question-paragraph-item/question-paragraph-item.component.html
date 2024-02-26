@@ -1,0 +1,7 @@
+<div class="text-xl mb-3">{{ question().title }} @if (question().required) {
+  <span>*</span>
+}</div>
+<mat-form-field>
+  <textarea [formControl]="content" matInput placeholder="Type your answer ..."
+            rows="3"></textarea>
+</mat-form-field>

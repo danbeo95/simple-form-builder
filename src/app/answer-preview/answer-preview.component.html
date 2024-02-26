@@ -1,0 +1,23 @@
+<div class="flex flex-col px-32">
+  @for (question of questions; track question) {
+    @if (question.type === 'paragraph') {
+      <ng-container>
+        <div class="text-xl mb-1">{{ question.title }}</div>
+        <div>
+          {{ question.answer }}
+        </div>
+      </ng-container>
+    }
+
+    @if (question.type === 'check_list') {
+      <div class="text-xl mb-1">{{ question.title }}</div>
+      @for (option of question.options; track option) {
+        <div>
+          {{ option.content }}
+        </div>
+      }
+    }
+    <mat-divider style="margin: 16px 0" />
+  }
+  <button mat-button [routerLink]="['/form/builder']">Back to form builder</button>
+</div>
