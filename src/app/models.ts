@@ -8,8 +8,9 @@ export interface QuestionParagraph {
 export interface QuestionCheckList {
   type: 'check_list',
   title: string,
-  options: { id: number, content: string, selected?: boolean }[],
+  options: { id: number, content: string, selected?: boolean, answer?: string }[],
   required?: boolean;
+  allow_other_options?: boolean;
 }
 
 export type Question = QuestionParagraph | QuestionCheckList;

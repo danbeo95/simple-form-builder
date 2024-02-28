@@ -23,6 +23,7 @@ interface FormGroupType {
   title: FormControl<string | null>,
   required: FormControl<boolean | null>,
   options?: FormArray<FormControl<string | null>>
+  allow_other_options?: FormControl<boolean | null>
 }
 
 @Component({
@@ -75,8 +76,10 @@ export class CreateQuestionDialogComponent implements OnInit, OnDestroy {
         this.formGroup.addControl('options', this.formBuilder.array([
           this.formBuilder.control('', [Validators.required])
         ]))
+        this.formGroup.addControl('allow_other_options', this.formBuilder.control(false));
       } else {
         this.formGroup.removeControl('options')
+        this.formGroup.removeControl('allow_other_options');
       }
     })
   }
@@ -101,7 +104,8 @@ export class CreateQuestionDialogComponent implements OnInit, OnDestroy {
     const question: Question = {
       title: formValue.title || '',
       type: formValue.type as any || '',
-      required: formValue.required || false
+      required: formValue.required || false,
+      allow_other_options: formValue.allow_other_options || false
     }
     if (formValue.options) {
       (question as unknown as QuestionCheckList).options = formValue.options.map((item, i) => ({

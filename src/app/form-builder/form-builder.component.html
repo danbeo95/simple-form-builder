@@ -19,7 +19,12 @@
 
   @if (questions().length > 0) {
     <button (click)="openCreateModal()" mat-raised-button [color]="'primary'">Add new question</button>
-    <button mat-button (click)="showAnswers()" [routerLink]="['/form/answer']">Review my answers</button>
+    <button mat-button (click)="showAnswers()" [routerLink]="['/form/answer']" [disabled]="formGroup.invalid">Review my answers</button>
+    @if (formGroup.dirty && formGroup.invalid){
+      <mat-error>Please fill required filed</mat-error>
+    }
   }
 </div>
+
+
 

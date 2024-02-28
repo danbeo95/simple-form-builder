@@ -7,4 +7,10 @@
       <mat-checkbox [formControlName]="i">{{ option.content }}</mat-checkbox>
     }
   </ng-container>
+  @if (formGroup.contains('other')){
+    <mat-form-field>
+      <mat-label>Other option</mat-label>
+      <textarea rows="2" formControlName="other" matInput placeholder="Other option ..." ></textarea>
+    </mat-form-field>
+  }
 </div>

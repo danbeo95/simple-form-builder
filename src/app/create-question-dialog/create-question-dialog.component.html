@@ -37,6 +37,11 @@
     <mat-checkbox formControlName="required">
       This field required
     </mat-checkbox>
+    @if (formGroup.contains('allow_other_options')) {
+      <mat-checkbox formControlName="allow_other_options">
+        Allow user to specify their own answer
+      </mat-checkbox>
+    }
   </div>
 </mat-dialog-content>
 <mat-dialog-actions align="end">

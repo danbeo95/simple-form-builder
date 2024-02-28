@@ -13,7 +13,7 @@
       <div class="text-xl mb-1">{{ question.title }}</div>
       @for (option of question.options; track option) {
         <div>
-          {{ option.content }}
+          {{ option.content || option.answer }}
         </div>
       }
     }
